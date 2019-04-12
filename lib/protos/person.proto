@@ -1,0 +1,36 @@
+// protoc --dart_out=./lib ./protos/person.proto
+// protoc --swift_out=./ios/Classes ./protos/person.proto
+
+syntax = "proto3";
+
+// `java_package` must match the package name you declare for `androidPackage` in your pubspec.yaml
+option java_package = "com.example.plugin_with_protobuf";
+
+message Person {
+    string name = 1;
+    repeated Address addressesList = 2;
+    repeated Person childrenList = 3;
+}
+
+message Address {
+    string streetName = 1;
+    string city = 2;
+    Province province = 3;
+    uint32 postalCode = 4;
+}
+
+enum Province {
+    NL = 0;
+    PE = 1;
+    NS = 2;
+    NB = 3;
+    QC = 4;
+    ON = 5;
+    MB = 6;
+    SK = 7;
+    AB = 8;
+    BC = 9;
+    YT = 10;
+    NT = 11;
+    NU = 12;
+};
