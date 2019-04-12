@@ -48,7 +48,21 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: FutureBuilder(
+              future: PluginWithProtobuf.myChildren, // come from async call
+              builder: (BuildContext context, AsyncSnapshot snapshot){
+                if (!snapshot.hasData) {
+                  return Text('Loading');
+                }
+                if (snapshot.hasError) {
+                  return Text(snapshot.error.toString());
+                }
+                Person _p = snapshot.data;
+                String personName = "${_p.name}" + ((_p.addressesList.isEmpty) ? " " : " is living in " + _p.addressesList[0].city);
+                String firstChildName = (_p.childrenList.isEmpty) ? " " :   " First child is ${_p.childrenList[0].name}";
+                return Text(personName + firstChildName);
+              }
+          ),
         ),
       ),
     );
