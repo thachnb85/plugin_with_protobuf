@@ -16,7 +16,7 @@ brew install dart
 pub global activate protoc_plugin
 
 # Edit bash_profile
-export PATH=$PATH:~/flutter/bin:~/.pub-cache/bin
+export PATH=$PATH:~/flutter/bin: ~/.pub-cache/bin
 
 # Prepare IDE
 Android Studio: Protobuf Support
